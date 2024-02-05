@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User, BlogPost } = require('../models');
+const { json } = require('sequelize');
+const {BlogPost} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -7,14 +8,19 @@ router.get('/', async (req, res) => {
         const blogData = await BlogPost.findAll();
         console.log(blogData)
         //seralize data
+
+        const jsonBlogData = blogData.map(post => post.toJSON());
+
         res.render('homepage', {
-            blogData,
+            blogData: jsonBlogData,
             logged_in: req.session.logged_in,
         });
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
+// TODO: route at post ID for getting a post where id matches body
 
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
@@ -25,7 +31,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// Need route to render the dashboard with the logged in user's blog posts
+// Render the dashboard with the logged in user's blog posts
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userId = req.session.user_id;
@@ -36,8 +42,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
             }
         });
 
+        const jsonBlogData = blogData.map(post => post.toJSON());
+
         res.render('dashboard', {
-            blogData,
+            blogData: jsonBlogData,
             logged_in: req.session.logged_in,
         });
     } catch (err) {
