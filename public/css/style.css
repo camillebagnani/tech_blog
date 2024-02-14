@@ -1,5 +1,31 @@
+/* UTILS */
+.hidden {
+    display: none;
+}
+/* NAV BAR STYLING */
 #navbar {
     display: flex;
     list-style-type: none;
     justify-content: space-evenly;
 }
+
+a {
+    text-decoration: none;
+}
+
+/* BLOGPOST STYLING */
+.blog-post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.single-blog-post {
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.single-blog-header {
+display: flex;
+justify-content: space-between;
+}
+

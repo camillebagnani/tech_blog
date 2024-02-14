@@ -1,12 +1,15 @@
-<div class="blogposts">
-    {{#each newPost}}
-    <div class="eachPost">
-        <div class="header">
-            <p>{{newPost.blog_title}}</p>
-            <p>Posted by {{newPost.blog_username}} on {{format_date newPost.blog_date}}</p>
+<div class="blog-post-container">
+    <div class="blog-post-container">
+        {{#each blogPosts as |blog|}}
+        <div class="single-blog-post">
+            <div class="single-blog-header">
+                <p>{{blog.blog_title}}</p>
+                <p>Posted by {{blog.blog_username}} on {{format_date blog.blog_date}}</p>
+            </div>
+            <div>
+                {{blog.blog_content}}
+            </div>
         </div>
-        <p>{{newPost.blog_content}}</p>
+        {{/each}}
     </div>
-    {{/each}}
 </div>
-

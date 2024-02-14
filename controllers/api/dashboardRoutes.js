@@ -21,18 +21,26 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 //post route
+// TODO: add withAuth
 router.post('/', withAuth, async (req, res) => {
     try {
         const userId = req.session.user_id;
-
+        const username = req.session.username;
+        const blogDate = req.session.createdAt
+        
         const newPost = await BlogPost.create({
-            blog_title: req.body.blog_title,
-            blog_content: req.body.blog_content,
-            blog_username: req.body.blog_username,
-            blog_date: req.body.blog_date,
+            blog_title: req.body.blogTitle,
+            blog_content: req.body.blogContent,
+            blog_username: username,
+            blog_date: blogDate,
             user_id: userId
         });
-        res.status(200).json(newPost);
+
+        serializedNewPost = newPost.get({plain: true});
+
+        console.log(serializedNewPost)
+
+        res.status(200).json(serializedNewPost);
     } catch (err) {
         res.status(500).json(err);
     }

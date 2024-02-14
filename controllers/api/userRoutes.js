@@ -13,10 +13,12 @@ router.post('/signup', async (req, res) => {
         });
 
         const serializedUserData = userData.get({plain: true});
-
+        console.log(serializedUserData)
         req.session.save(() => {
             req.session.user_id = serializedUserData.id;
             req.session.logged_in = true;
+            req.session.username = serializedUserData.username;
+            req.session.createdAt = serializedUserData.createdAt;
 
             res.status(200).json(userData)
         });
@@ -29,15 +31,17 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { username: req.body.username } });
-
-        if (!userData) {
+        
+        const serializedUserData = userData.get({plain: true});
+        
+        if (!serializedUserData) {
             res.status(400).json({ message: 'Incorrect email or password. Please try again.' });
             return;
         }
 
         const validPassword = await bcrypt.compare(
             req.body.password,
-            userData.password
+            serializedUserData.password
         );
 
         if (!validPassword) {
@@ -46,10 +50,14 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.user_id = userData.id;
+            req.session.user_id = serializedUserData.id;
             req.session.logged_in = true;
 
-            res.json({ user: userData, message: 'Logged in successfully!' });
+
+            req.session.username = serializedUserData.username;
+            req.session.createdAt = serializedUserData.createdAt;
+
+            res.json({ user: serializedUserData, message: 'Logged in successfully!' });
         });
     } catch (err) {
         res.status(400).json(err);

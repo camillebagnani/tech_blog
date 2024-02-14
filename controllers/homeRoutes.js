@@ -7,10 +7,12 @@ router.get('/', async (req, res) => {
     try {
         const blogData = await BlogPost.findAll();
       
-        const jsonBlogData = blogData.map(post => post.toJSON());
+        const blogPosts = blogData.map((post) => {
+            return post.get({plain: true})
+        });
 
         res.render('homepage', {
-            blogData: jsonBlogData,
+            blogPosts,
             logged_in: req.session.logged_in,
         });
     } catch (err) {
@@ -29,7 +31,7 @@ router.get('/login', (req, res) => {
 
 // Render the dashboard with the logged in user's blog posts
 //TODO: Add withAuth
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userId = req.session.user_id;
 
@@ -39,10 +41,14 @@ router.get('/dashboard', async (req, res) => {
             }
         });
 
-        const jsonBlogData = blogData.map(post => post.toJSON());
+        const blogPosts = blogData.map((post) => {
+            return post.get({plain: true})
+        });
+
+        console.log('blogposts by user:', blogPosts)
 
         res.render('dashboard', {
-            blogData: jsonBlogData,
+            blogPosts,
             logged_in: req.session.logged_in,
         });
 

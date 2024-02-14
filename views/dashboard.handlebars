@@ -1,22 +1,30 @@
 <div class="dashboard-container">
-<div class="new-post-container hidden show">
-    <p>Create New Post</p>
-    <form>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="new-post-title">
-        <label for="content">Content</label>
-        <input type="text" name="content" id="new-post-content">
-        <button id="create-btn">Create</button>
-    </form>
-</div>
+    <div class="new-post-container hidden show">
+        <p>Create New Post</p>
+        <form>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="blog-title">
+            <label for="content">Content</label>
+            <input type="text" name="content" id="blog-content">
+            <button id="create-btn">Create</button>
+        </form>
+    </div>
 
-<button class="btn">New Post</button>
+    <button id="new-post-btn">New Post</button>
 
-{{!-- {{#each BlogPost}}
-<div>
-    
+    <div class="blog-post-container show">
+    {{#each blogPosts as |blog|}}
+    <div class="single-blog-post">
+        <div class="single-blog-header">
+            <p>{{blog.blog_title}}</p>
+            <p>Posted by {{blog.blog_username}} on {{format_date blog.blog_date}}</p>
+        </div>
+        <div>
+            {{blog.blog_content}}
+        </div>
+    </div>
+    {{/each}}
+    </div>
 </div>
-{{/each}} --}}
-{{!-- </div> --}}
 
 <script src="/js/dashboard.js"></script>
