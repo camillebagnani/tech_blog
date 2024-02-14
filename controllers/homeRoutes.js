@@ -6,9 +6,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const blogData = await BlogPost.findAll();
-        console.log(blogData)
-        //seralize data
-
+      
         const jsonBlogData = blogData.map(post => post.toJSON());
 
         res.render('homepage', {
@@ -20,8 +18,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// TODO: route at post ID for getting a post where id matches body
-
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
@@ -32,7 +28,8 @@ router.get('/login', (req, res) => {
 });
 
 // Render the dashboard with the logged in user's blog posts
-router.get('/dashboard', withAuth, async (req, res) => {
+//TODO: Add withAuth
+router.get('/dashboard', async (req, res) => {
     try {
         const userId = req.session.user_id;
 
@@ -48,9 +45,12 @@ router.get('/dashboard', withAuth, async (req, res) => {
             blogData: jsonBlogData,
             logged_in: req.session.logged_in,
         });
+
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
+// TODO: get route at post ID for getting a post where id matches body
 
 module.exports = router;

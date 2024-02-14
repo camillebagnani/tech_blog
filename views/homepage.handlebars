@@ -1,5 +1,12 @@
-<h1>Homepage</h1>
-<p>Hello this is a tech blog</p>
+<div class="blogposts">
+    {{#each newPost}}
+    <div class="eachPost">
+        <div class="header">
+            <p>{{newPost.blog_title}}</p>
+            <p>Posted by {{newPost.blog_username}} on {{format_date newPost.blog_date}}</p>
+        </div>
+        <p>{{newPost.blog_content}}</p>
+    </div>
+    {{/each}}
+</div>
 
-
-<script src="/assets/index.js"></script>
