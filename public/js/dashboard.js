@@ -14,6 +14,16 @@ async function createPost(event) {
             'Content-Type': 'application/json',
         },
     });
+
+    const newPostForm = document.querySelector('.new-post-container');
+    newPostForm.classList.add('hidden');
+
+    const blogPostContainer = document.querySelector('.blog-post-container');
+    blogPostContainer.classList.remove('hidden');
+    console.log('location',location)
+    console.log('location.href', location.href)
+    location.reload();
+    
 };
 
 const showForm = () => {

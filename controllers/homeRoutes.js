@@ -45,8 +45,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
             return post.get({plain: true})
         });
 
-        console.log('blogposts by user:', blogPosts)
-
         res.render('dashboard', {
             blogPosts,
             logged_in: req.session.logged_in,

@@ -26,7 +26,8 @@ router.post('/', withAuth, async (req, res) => {
     try {
         const userId = req.session.user_id;
         const username = req.session.username;
-        const blogDate = req.session.createdAt
+        const blogDate = req.session.createdAt;
+        console.log('Blog Date:', blogDate)
         
         const newPost = await BlogPost.create({
             blog_title: req.body.blogTitle,
