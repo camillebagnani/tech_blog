@@ -1,0 +1,15 @@
+<div class="new-post-container">
+    <p>Edit Post</p>
+    <form>
+        <label for="title">Title</label>
+        <textarea name="title" id="blog-title" data-id="{{blogPost.id}}" cols="30"
+            rows="1">{{blogPost.blog_title}}</textarea>
+        <label for="content">Content</label>
+        <textarea name="content" id="blog-content" data-id="{{blogPost.id}}" cols="30"
+            rows="4">{{blogPost.blog_content}}</textarea>
+        <button id="update-btn">Update Post</button>
+        <button id="delete-btn">Delete</button>
+    </form>
+</div>
+
+<script src="/js/editpost.js"></script>

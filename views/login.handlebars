@@ -1,26 +1,28 @@
-<div>
+<div class="login-div">
     {{!-- action tells the form where to save? --}}
     <form class="form login-form">
         <label for="username">Username</label>
         <input type="text" name="username" id="username-login">
         <label for="password">Password</label>
         <input type="password" name='password' id="password-login">
-        <div class="form-group">
+        <div class="form-group login-signup">
             <button class="btn btn-primary" type="submit">Login</button>
+            <a href="" class="sign-up-link">Sign up instead</a>
         </div>
     </form>
 </div>
 
-<div>
+<div class="signup-div hidden"> 
     <form class="form signup-form">
         <label for="username">Username</label>
         <input type="text" name="username" id="username-signup">
         <label for="password">Password</label>
         <input type="password" name='password' id="password-signup">
-        <div class="form-group">
+        <div class="form-group login-signup">
             <button class="btn btn-primary" type="submit">Sign Up</button>
+            <a href="">Login instead</a>
         </div>
     </form>
 </div>
 <script src='/js/login.js'></script>
-<script src='/js/signup.js'></script>
+{{!-- <script src='/js/signup.js'></script> --}}

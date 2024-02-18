@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const { json } = require('sequelize');
-const {BlogPost} = require('../models');
+const { BlogPost, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
         const blogData = await BlogPost.findAll();
-      
+
         const blogPosts = blogData.map((post) => {
-            return post.get({plain: true})
+            return post.get({ plain: true })
         });
 
         res.render('homepage', {
@@ -42,7 +42,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         });
 
         const blogPosts = blogData.map((post) => {
-            return post.get({plain: true})
+            return post.get({ plain: true })
         });
 
         res.render('dashboard', {
@@ -56,5 +56,37 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 // TODO: get route at post ID for getting a post where id matches body
+router.get('/singlepost/:id', async (req, res) => {
+    try {
+        const blogData = await BlogPost.findByPk(req.params.id, {
+            include: Comment
+        });
+
+        const serialized = blogData.get({ plain: true });
+
+        res.render('singlepost', {
+            blogPost: { ...serialized },
+            logged_in: req.session.logged_in,
+        })
+    } catch (err) {
+        res.status(500).json(err);
+    }
+
+});
+
+router.get('/editpost/:id', async (req, res) => {
+    try {
+        const blogData = await BlogPost.findByPk(req.params.id);
+
+        const serialized = blogData.get({ plain: true });
+
+        res.render('editpost', {
+            blogPost: {...serialized},
+            logged_in: req.session.logged_in,
+        })
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
 
 module.exports = router;

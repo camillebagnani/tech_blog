@@ -1,0 +1,29 @@
+<div class="blog-post-container">
+        <div class="single-blog-post">
+            <div class="single-blog-header">
+                <p>{{blogPost.blog_title}}</p>
+                <p>Posted by {{blogPost.blog_username}} on {{format_date blogPost.blog_date}}</p>
+            </div>
+            <div>
+                {{blogPost.blog_content}}
+            </div>
+        </div>
+    </div>
+
+<div class="comment-container">
+{{#each blogPost.comments as |comment|}}
+<div id="each-comment">
+<div>{{comment.comment_content}}</div>
+</div>
+{{/each}}
+</div>
+
+<div>
+    <form action="">
+        <label for="comment">Comment</label>
+        <textarea name="comment" id="comment" data-id="{{blogPost.id}}" cols="30" rows="4"></textarea>
+        <button id="submit">Submit</button>
+    </form>
+</div>
+
+<script src="/js/comment.js"></script>

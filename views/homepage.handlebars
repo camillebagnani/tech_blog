@@ -1,6 +1,7 @@
 <div class="blog-post-container">
     <div class="blog-post-container">
         {{#each blogPosts as |blog|}}
+        <a href="/singlepost/{{blog.id}}">
         <div class="single-blog-post">
             <div class="single-blog-header">
                 <p>{{blog.blog_title}}</p>
@@ -10,6 +11,7 @@
                 {{blog.blog_content}}
             </div>
         </div>
+        </a>
         {{/each}}
     </div>
 </div>

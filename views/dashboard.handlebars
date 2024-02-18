@@ -3,9 +3,9 @@
         <p>Create New Post</p>
         <form>
             <label for="title">Title</label>
-            <input type="text" name="title" id="blog-title">
+                        <textarea name="title" id="blog-title" data-id="{{blogPost.id}}" cols="30" rows="1"></textarea>
             <label for="content">Content</label>
-            <input type="text" name="content" id="blog-content">
+            <textarea name="content" id="blog-content" data-id="{{blogPost.id}}" cols="30" rows="4"></textarea>
             <button id="create-btn">Create</button>
         </form>
     </div>
@@ -13,17 +13,16 @@
     <button id="new-post-btn">New Post</button>
 
     <div class="blog-post-container show">
-    {{#each blogPosts as |blog|}}
-    <div class="single-blog-post">
-        <div class="single-blog-header">
-            <p>{{blog.blog_title}}</p>
-            <p>Posted by {{blog.blog_username}} on {{format_date blog.blog_date}}</p>
-        </div>
-        <div>
-            {{blog.blog_content}}
-        </div>
-    </div>
-    {{/each}}
+        {{#each blogPosts as |blog|}}
+        <a href="/editpost/{{blog.id}}">
+            <div class="single-blog-post">
+                <div class="single-blog-header">
+                    <p>{{blog.blog_title}}</p>
+                    <p>{{format_date blog.blog_date}}</p>
+                </div>
+            </div>
+        </a>
+        {{/each}}
     </div>
 </div>
 

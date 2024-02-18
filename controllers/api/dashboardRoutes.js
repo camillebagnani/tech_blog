@@ -1,6 +1,6 @@
 // if logged in and have existing posts, the fetch request will hit this to populate the data
 const router = require('express').Router();
-const {User, BlogPost} = require('../../models');
+const { BlogPost } = require('../../models');
 const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection')
 
@@ -17,7 +17,7 @@ router.get('/', withAuth, async (req, res) => {
         res.status(200).json(blogData);
     } catch (err) {
         res.status(500).json(err);
-    } 
+    }
 });
 
 //post route
@@ -27,8 +27,7 @@ router.post('/', withAuth, async (req, res) => {
         const userId = req.session.user_id;
         const username = req.session.username;
         const blogDate = req.session.createdAt;
-        console.log('Blog Date:', blogDate)
-        
+
         const newPost = await BlogPost.create({
             blog_title: req.body.blogTitle,
             blog_content: req.body.blogContent,
@@ -37,17 +36,12 @@ router.post('/', withAuth, async (req, res) => {
             user_id: userId
         });
 
-        serializedNewPost = newPost.get({plain: true});
-
-        console.log(serializedNewPost)
+        serializedNewPost = newPost.get({ plain: true });
 
         res.status(200).json(serializedNewPost);
     } catch (err) {
         res.status(500).json(err);
     }
 });
-
-// TODO: put route to add a comment on a post with a specific id (queryparameter)
-router.put('/:id')
 
 module.exports = router;
