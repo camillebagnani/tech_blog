@@ -14,6 +14,7 @@
 {{#each blogPost.comments as |comment|}}
 <div id="each-comment">
 <div>{{comment.comment_content}}</div>
+<div>-{{comment.comment_username}}, {{format_date comment.comment_date}}</div>
 </div>
 {{/each}}
 </div>

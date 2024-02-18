@@ -8,6 +8,7 @@ router.post('/', withAuth, async (req, res) => {
         const username = req.session.username;
         const commentDate = req.session.createdAt;
         const userId = req.session.user_id;
+        console.log(commentDate)
 
         const newComment = await Comment.create({
             comment_content: req.body.comment_content,

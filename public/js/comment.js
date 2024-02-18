@@ -19,6 +19,7 @@ const addComment = async (event) => {
     } else {
         document.location.replace('/login')
     };
+    
 };
 
 document.querySelector('#submit').addEventListener('click', addComment);
