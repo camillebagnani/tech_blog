@@ -1,0 +1,17 @@
+[
+    {
+        "blog_title": "Sequelize Methods",
+        "blog_content": "I love how easy Sequelize makes performing database queries.",
+        "blog_username": "bob",
+        "blog_date": "2024-02-18T05:21:18.000Z",
+        "user_id": 1
+    },
+
+    {
+        "blog_title": "Handlebars Review",
+        "blog_content": "Handlebars is a cool templating language for inputting simple data into HTML.",
+        "blog_username": "bill",
+        "blog_date": "2024-02-17T05:21:18.000Z",
+        "user_id": 2
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "comment_content": "I agree! And the Sequelize docs are easy to follow.",
+        "comment_username": "bill",
+        "comment_date": "2024-02-19T05:21:18.000Z",
+        "blog_id": 1
+    },
+
+    {
+        "comment_content": "Handlebars is awesome.",
+        "comment_username": "bob",
+        "comment_date": "2024-02-20T05:21:18.000Z",
+        "blog_id": 2
+    }
+]

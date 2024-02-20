@@ -28,6 +28,8 @@ router.post('/', withAuth, async (req, res) => {
         const username = req.session.username;
         const blogDate = req.session.createdAt;
 
+        console.log('blogdate',blogDate)
+
         const newPost = await BlogPost.create({
             blog_title: req.body.blogTitle,
             blog_content: req.body.blogContent,
