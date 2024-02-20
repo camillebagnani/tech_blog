@@ -1,7 +1,7 @@
 <div class="dashboard-container">
-    <div class="new-post-container hidden show">
-        <p>Create New Post</p>
-        <form>
+    <div class="new-post-container hidden">
+        <p id="new-post-title">Create New Post</p>
+        <form id="new-post-form">
             <label for="title">Title</label>
                         <textarea name="title" id="blog-title" data-id="{{blogPost.id}}" cols="30" rows="1"></textarea>
             <label for="content">Content</label>
@@ -9,8 +9,6 @@
             <button id="create-btn">Create</button>
         </form>
     </div>
-
-    <button id="new-post-btn">New Post</button>
 
     <div class="blog-post-container show">
         {{#each blogPosts as |blog|}}
@@ -24,6 +22,9 @@
         </a>
         {{/each}}
     </div>
+
+    <button id="new-post-btn">+ New Post</button>
+
 </div>
 
 <script src="/js/dashboard.js"></script>

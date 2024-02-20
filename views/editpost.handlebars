@@ -1,16 +1,19 @@
+<div id="editpost-page">
 <div class="new-post-container">
-    <p>Edit Post</p>
-    <form>
+    <div id="new-post-title">Edit Post</div>
+     <form id="edit-form">
         <label for="title">Title</label>
         <textarea name="title" id="blog-title" data-id="{{blogPost.id}}" cols="30"
             rows="1">{{blogPost.blog_title}}</textarea>
         <label for="content">Content</label>
         <textarea name="content" id="blog-content" data-id="{{blogPost.id}}" cols="30"
             rows="4">{{blogPost.blog_content}}</textarea>
+        <div id="update-buttons">
         <button id="update-btn">Update Post</button>
         <button type="button" id="delete-btn">Delete</button>
+        </div>
     </form>
 </div>
-
+</div>
 <script src="/js/editpost.js"></script>
 <script src="/js/deletepost.js"></script>
